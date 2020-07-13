@@ -41,4 +41,37 @@ const typing = (newTime) => {
   requestAnimationFrame(typing);
 }
 
-typing();
+// typing();
+
+//Animation Robot
+
+const bars = () => {
+
+  const tl = new TimelineMax({ onComplete: bars });
+
+  const scale = () => {
+    return 0.1 + Math.random() * 3;
+  }
+  const color = () => {
+    const colors = ['orange', 'green', 'yellow'];
+    return colors[Math.floor(Math.random() * 3)];
+  }
+  // const voiceBars = document.querySelector('#voice-bars');
+  const barsElement = document.querySelectorAll('#voice-bars > *');
+  tl.set(barsElement, { y: -30, transformOrigin: '50% 50%' });
+  tl.staggerTo(barsElement, .7, { scaleY: scale, repeat: 1, yoyo: true, fill: color, ease: Bounce.easeIn }, .1);
+  return tl;
+}
+
+const eye = () => {
+  const tl = new TimelineMax();
+  return tl;
+}
+const move = () => {
+  const tl = new TimelineMax();
+  return tl;
+}
+
+
+const master = new TimelineMax();
+master.add(bars());
