@@ -1,8 +1,20 @@
 body {
-  display: flex;
-  min-height: 100vh;
   margin: 0;
   background-color: #333;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  font-family: 'Roboto Mono', sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -33,7 +45,26 @@ body {
 .robot {
   box-sizing: border-box;
   width: 30%;
-  padding: 3%;
+  padding: 2%;
+}
+
+@media (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  .typing {
+    width: 80%;
+    font-size: 18px;
+  }
+  .robot {
+    width: 80%;
+    padding: 10%;
+  }
 }
 
 @keyframes cursor {

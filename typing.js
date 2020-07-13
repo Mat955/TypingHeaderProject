@@ -41,7 +41,7 @@ const typing = (newTime) => {
   requestAnimationFrame(typing);
 }
 
-// typing();
+typing();
 
 //Animation Robot
 
@@ -58,20 +58,58 @@ const bars = () => {
   }
   // const voiceBars = document.querySelector('#voice-bars');
   const barsElement = document.querySelectorAll('#voice-bars > *');
+
   tl.set(barsElement, { y: -30, transformOrigin: '50% 50%' });
   tl.staggerTo(barsElement, .7, { scaleY: scale, repeat: 1, yoyo: true, fill: color, ease: Bounce.easeIn }, .1);
   return tl;
 }
 
-const eye = () => {
-  const tl = new TimelineMax();
+const eyes = () => {
+
+  const tl = new TimelineMax({ repeat: -1, repeatDelay: 3, delay: 2 });
+
+  const eyesElement = document.querySelectorAll('#eye-left, #eye-right');
+
+  tl
+    .set(eyesElement, { transformOrigin: '50% 50%' })
+    .to(eyesElement, .1, { scaleY: 0, fill: "231f20" })
+    .to(eyesElement, .05, { scaleY: 1, fill: "48b3e6" })
+    .to(eyesElement, .12, { scaleY: 0, fill: "231f20" }, "+=0.5")
+    .to(eyesElement, .03, { scaleY: 1, fill: "48b3e6" })
+    .to(eyesElement, .08, { scaleY: 0, fill: "231f20" }, "+=1.5")
+    .to(eyesElement, .08, { scaleY: 1, fill: "red" })
+
   return tl;
 }
-const move = () => {
+
+const arms = () => {
   const tl = new TimelineMax();
+
+  const handsElement = document.querySelectorAll('#hand-right, #hand-left');
+  const armsElement = document.querySelectorAll('#arm-right, #arm-left');
+
+  tl
+    .to(handsElement, .6, { y: -20, repeat: -1, yoyoy: true, ease: Bounce.easeIn }, .6)
+    .to(armsElement, .6, { y: -30, repeat: -1, yoyoy: true, ease: Bounce.easeIn }, .6)
+
+  return tl;
+
+}
+
+const move = () => {
+
+  const tl = new TimelineMax();
+
+  const legsElement = document.querySelectorAll('#leg-right, #leg-left')
+
+  tl.staggerTo(legsElement, .5, { y: -60, repeat: -1, yoyo: true, ease: Power0.easeNone }, .5);
   return tl;
 }
 
 
 const master = new TimelineMax();
-master.add(bars());
+master.add('start');
+master.add(bars(), 'start');
+master.add(move(), 'start');
+master.add(eyes(), 'start');
+master.add(arms(), 'start');
